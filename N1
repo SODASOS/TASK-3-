@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Seconds {
+private:
+    int seconds; // это число секунд
+
+public:
+    // это у нас констркуктор
+    Seconds() : seconds(0) {}
+
+    // тут конструктор с параметром
+    Seconds(int sec) : seconds(sec) {}
+
+    // тут указан метод для получения значения секунд
+    int getSeconds() const {
+        return seconds;
+    }
+
+    // это метод для преобразования в строку
+    string toString() const {
+        return to_string(seconds) + " секунд";
+    }
+};
+
+int main() {
+    int n = 5; // кол.во объектов
+    // создание динамического массива объектов секонд
+    Seconds* secondsArray = new Seconds[n];
+
+    // сдесь происходит инициализация массива с помощью конструктора
+    for (int i = 0; i < n; ++i) {
+        secondsArray[i] = Seconds(i * 10); // Присваиваем значения которые делятся на 10
+    }
+
+    // выводит значений на экран
+    cout << "Секунды:" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << secondsArray[i].toString() << endl;
+    }
+
+   
+    delete[] secondsArray;
+
+    return 0;
+}
