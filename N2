@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+class Seconds {
+private:
+    int seconds;
+
+public:
+    // конструктор 
+    Seconds() : seconds(0) {}
+
+    // эт конструктор с параметром
+    Seconds(int sec) : seconds(sec) {}
+
+    // это что бы устанавливало значение секунд
+    void setSeconds(int sec) {
+        seconds = sec;
+    }
+
+    // получить значение секунд
+    int getSeconds() const {
+        return seconds;
+    }
+
+    // это для строковых представлений объекта
+    std::string toString() const {
+        return std::to_string(seconds) + " seconds";
+    }
+
+    // это оператор сравнения
+    bool operator==(const Seconds& other) const {
+        return seconds == other.seconds;
+    }
+};
+
+int main() {
+    std::vector<Seconds> timeList;
+
+    // тут просто добовляем разные значения у меня 10,20 и 35
+    timeList.push_back(Seconds(10));
+    timeList.push_back(Seconds(20));
+    timeList.push_back(Seconds(35));
+
+    // выводит значения
+    std::cout << "Список секунд:" << std::endl;
+    for (const Seconds& s : timeList) {
+        std::cout << s.toString() << std::endl;
+    }
+
+    // тут происходит ввод нового значения для одного из элементов списка
+    int index, newValue;
+    std::cout << "Введите индекс элемента для изменения (0-" << timeList.size() - 1 << "): ";
+    std::cin >> index;
+
+    if (index >= 0 && index < timeList.size()) {
+        std::cout << "введите скока секунд: ";
+        std::cin >> newValue;
+        timeList[index].setSeconds(newValue);
+        std::cout << "значение обновлено " << std::endl;
+    } else {
+        std::cout << "ошибка" << std::endl;
+    }
+
+    // вывод обновленного списка
+    std::cout << обновленный список секунд:" << std::endl;
+    for (const Seconds& s : timeList) {
+        std::cout << s.toString() << std::endl;
+    }
+
+    return 0;
+}
